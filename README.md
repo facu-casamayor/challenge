@@ -1,66 +1,37 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+**Descripción del Proyecto: Sistema de Gestión de Gifs**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+El Sistema de Gestión de Gifs es una plataforma desarrollada utilizando PHP 8.2 y el framework Laravel versión 10, con MySQL como base de datos. El objetivo principal de este sistema es proporcionar una interfaz API para gestionar y buscar gifs de la plataforma GIPHY.
 
-## About Laravel
+**Funcionalidades Principales:**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Registro de Usuarios (register): Permite a los usuarios registrarse en la plataforma proporcionando información básica como email y contraseña.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Inicio de Sesión (login): Los usuarios pueden iniciar sesión en la plataforma utilizando sus credenciales. Al autenticarse correctamente, se genera un token de acceso que será utilizado para autorizar las solicitudes a las APIs restantes. La duración de este token es de 30 minutos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Búsqueda de Gifs por Término (search): Esta API permite a los usuarios buscar gifs utilizando un término específico. Se integra con la API de GIPHY para recuperar información sobre gifs relacionados con el término de búsqueda proporcionado. Se puede limitar la devolución de los datos y un offset.
 
-## Learning Laravel
+Guardado de Gifs (save): Los usuarios autenticados pueden guardar gifs seleccionados en su cuenta para acceder posteriormente. Proporcionando el id del gif y el usuario al cuál desea guardar dicho gif. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Búsqueda de Gifs por Identificador (searchById): Permite a los usuarios buscar un gif específico utilizando su identificador único. Esto facilita la recuperación rápida de gifs guardados previamente.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Integración con GIPHY API:**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+El sistema integra dos APIs de GIPHY para enriquecer la experiencia del usuario:
 
-## Laravel Sponsors
+Búsqueda de Gifs por Término: Utiliza la API de GIPHY para recuperar gifs relacionados con el término de búsqueda proporcionado por el usuario.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Búsqueda de Detalles de Gifs por String: Esta funcionalidad permite al usuario obtener información detallada sobre los gifs utilizando un string específico.
 
-### Premium Partners
+**Autenticación y Autorización:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+El sistema utiliza un sistema de autenticación basado en tokens JWT (JSON Web Tokens). Al iniciar sesión, se genera un token de acceso que tiene una duración de 30 minutos. Este token debe ser incluido en las solicitudes a las APIs protegidas para autorizarlas. En el caso de utilizar el link debajo, automaticamente en cada inicio de sesión coloca el token a cada API que precisa dicho token.
 
-## Contributing
+Persistencia de Datos:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+La información de los usuarios registrados, los gifs guardados y otros datos relevantes se almacenan en una base de datos MySQL, lo que garantiza la persistencia de los datos y la capacidad de escalar el sistema según sea necesario.
 
-## Code of Conduct
+En resumen, el Sistema de Gestión de Gifs proporciona una plataforma robusta y fácil de usar para buscar, guardar y gestionar gifs, aprovechando la potencia de Laravel y la API de GIPHY para ofrecer una experiencia de usuario fluida y atractiva.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Colección POSTMAN: https://www.postman.com/warped-escape-32979/workspace/public-workspace/collection/24365255-ea3d5557-18c2-4e18-9ec3-6d58bab23f2d?action=share&creator=24365255
